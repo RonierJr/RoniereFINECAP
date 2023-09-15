@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header style="display: flex; justify-content: space-around;">
-    <a href="{% url 'index' %}" style="text-decoration: none;"><h1>FINECAP</h1></a>
-    <div>
-    <a href="{% url 'listar' %}" style="margin: 10px;">Lista de reserva</a>
-    <a href="{% url 'criar' %}" style="margin: 10px;">Reservar</a>
-    </div>
+<header style="display: flex; justify-content: space-around; background-color: rgb(231, 231, 231); height: 100px; text-align: center; width: 100%;">
+    <a href="{% url 'index' %}" style="text-decoration: none; padding-top: 20px;"><h1>FINECAP</h1></a>
+    <nav style="margin-top: 30px;">
+    <a href="{% url 'listar' %}" style="margin: 10px; text-decoration: none;">Lista de reserva</a>
+    <a href="{% url 'criar' %}" style="margin: 10px; text-decoration: none;">Reservar</a>
+    </nav>
 </header>
-<main style="margin-left: 50px; margin-right: 50px;">
+<main style="width: 70%; text-align: center; margin: auto;">
 {% block main %}
 {% endblock %}
 </main>
