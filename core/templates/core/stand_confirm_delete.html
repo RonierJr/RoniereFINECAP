@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<style>
+  .button {
+    color: white;
+    background-color: red;
+  }
+  </style>
+
+<h1>Definir Stand</h1>
+<form method="post">
+  <section class="form container-fluid p-5x">
+  {% csrf_token %}
+    <p> Você tem certeza que quer deletar o stand "{{ object }}"?</p>
+    {{ form }}
+</section>
+  <button class="button" type="submit">Confirmar</button>
+</form>
+
+{% endblock %}

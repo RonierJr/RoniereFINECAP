@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<br>
+
+<main>
+    <section class="sct-form">
+        <div class="form">
+            <h1>Reserve seu Stand</h1>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="nome_empresa" class="form-label">Localização</label>
+                    {{ form.localizacao }}
+                </div>
+                <div class="mb-3">
+                    <label for="empresa_categoria'" class="form-label">Valor</label>
+                    {{ form.valor }}
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+{% endblock %}

@@ -16,13 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import index,criar,listar,detalhar,remover
+from core.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("", index, name='index'),
-    path('criar/', criar, name='criar'),
-    path('listar/', listar, name='listar'),
-    path('remover/<int:id>/', remover, name="remover"),
-    path('detalhar/<int:id>/', detalhar, name='detalhar')
+    path("admin/", admin.site.urls),
+    path('', IndexHomeView.as_view(), name='index'),
+    path('Criar_reservas/', ReservaCreateView.as_view(), name="reserva"),
+    path('lista_reservas/', ReservasListView.as_view(), name='lista_reservas'),
+    path('remover_reserva/<int:pk>/', ReservaDeleteView.as_view(), name="remover_reserva"),
+    path('reserva_detalhe/<int:pk>/', ReservaDetailView.as_view(), name='reserva_detalhe'),
+    path('update/<int:pk>/', ReservaUpdateView.as_view(), name="editar"),
+    path('lista_stands/', StandListView.as_view(), name='lista_stands'),
+    path('criar_stand/', StandCreateView.as_view(), name="criar_stand"),
+    path('remover_stand/<int:pk>/', StandDeleteView.as_view(), name="remover_stand"),
+    path('update_stand/<int:pk>/', StandUpdateView.as_view(), name="editar_stand"),
+    path('stand_detalhe/<int:pk>/', StandDetailView.as_view(), name='stand_detalhe'),
 ]
