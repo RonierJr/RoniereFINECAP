@@ -1,11 +1,8 @@
 {%  extends 'base.html' %}
 
 {% block main %}
-<br>
-<br>
-    <h3 class="mt-3"> Lista de Reservas</h3>
-
-  <a href="{% url 'reserva' %}" class="btn btn-success mb-3">Novo Cadastro</a>
+    <h3> Lista de Reservas</h3>
+  <a href="{% url 'reserva' %}" class="btn mb-3 cadastrar" style="background-color: rgb(57, 57, 255); color: white;">Novo Cadastro</a>
 
   {% if messages %}
 <div class="messages">
@@ -16,9 +13,8 @@
   {% endfor %}
 </div>
 {% endif %}
-
-  <table class="table table-bordered">
-    <thead>
+<table class="table">
+    <thead class="thead-light">
       <tr>
         <th>Empresa</th>
         <th>Stand</th>
@@ -27,95 +23,119 @@
     </thead>
     <tbody>
       {% for object in object_list %}  
-      <tr>
+      <tr">
         <td>{{ object.nome_empresa }}</td>
         <td>{{ object.stand }}</td>
         <td style="display: flex; justify-content: space-evenly;">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons"></div>
-          <a href="{% url 'editar' object.id %}" class="btn btn-info btn-sm">Editar</a>
-          <a href="{% url 'reserva_detalhe' object.id %}" class="btn btn-primary btn-sm">Detalhar</a>
-          <a href="{% url 'remover_reserva' object.id %}" class="btn btn-danger btn-sm">Remover</a>
+          <style>
+            .editar{
+                color: black;
+            }
+            .editar:hover {
+                color: gray;
+            }
+            .detalhar{
+                color: black;
+            }
+            .detalhar:hover {
+                color: gray;
+            }
+            .remover{
+                color: black;
+            }
+            .remover:hover {
+                color: red;
+            }
+          </style>
+          <a href="{% url 'editar' object.id %}" ><span class="material-icons editar">
+            edit
+            </span></a>
+          <a href="{% url 'reserva_detalhe' object.id %}" ><span class="material-icons detalhar">
+            find_in_page
+            </span></a>
+          <a href="{% url 'remover_reserva' object.id %}" ><span class="material-icons remover">
+            delete
+            </span></a>
         </td>
       </tr>
       {% endfor %}
     
     </tbody>
-  </table>
-
-  <div class="container">
-    <div class="row">
-        {% comment %}
-            In this block we will display every single item in a 4 columns grid
-        {% endcomment %}
-        {% for item in items %}
-            <div class="col-lg-3">
-                {{ item.id }}). {{ item.name }}
-            </div>
-        {% endfor %}
-    </div>
+</table>
+<div class="container">
+  <div class="row">
+      {% comment %}
+          In this block we will display every single item in a 4 columns grid
+      {% endcomment %}
+      {% for item in items %}
+          <div class="col-lg-3">
+              {{ item.id }}). {{ item.name }}
+          </div>
+      {% endfor %}
+  </div>
 </div>
 
 {% comment %}
-    Render a Bootstrap 5 based pagination element with Django default's pagination
+  Render a Bootstrap 5 based pagination element with Django default's pagination
 {% endcomment %}
 <div class="row">
-    <div class="col-lg-12">
-        {% if page_obj.has_other_pages %}
-            <nav>
-                <ul class="pagination justify-content-center">
-                    {% if page_obj.has_previous %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page=1">
-                                First
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-                                Previous
-                            </a>
-                        </li>
-                    {% endif %}
+  <div class="col-lg-12">
+      {% if page_obj.has_other_pages %}
+          <nav>
+              <ul class="pagination justify-content-center">
+                  {% if page_obj.has_previous %}
+                      <li class="page-item">
+                          <a class="page-link" style="color: rgb(57, 57, 255);" href="?page=1">
+                              First
+                          </a>
+                      </li>
+                      <li class="page-item">
+                          <a class="page-link" style="color: rgb(57, 57, 255);" href="?page={{ page_obj.previous_page_number }}">
+                              Previous
+                          </a>
+                      </li>
+                  {% endif %}
 
-                    {% for page_number in page_obj.paginator.page_range %}
-                        {% comment %}
-                            This conditional allows us to display up to 3 pages before and after the current page
-                            If you decide to remove this conditional, all the pages will be displayed
+                  {% for page_number in page_obj.paginator.page_range %}
+                      {% comment %}
+                          This conditional allows us to display up to 3 pages before and after the current page
+                          If you decide to remove this conditional, all the pages will be displayed
 
-                            You can change the 3 to any number you want e.g
-                            To display only 5 pagination items, change the 3 to 2 (2 before and 2 after the current page)
-                        {% endcomment %}
-                        {% if page_number <= page_obj.number|add:3 and page_number >= page_obj.number|add:-3 %}
-                            {% if page_obj.number == page_number %}
-                                <li class="page-item active">
-                                    <a class="page-link" href="?page={{ page_number }}">
-                                        {{ page_number }}
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_number }}">
-                                        {{ page_number }}
-                                    </a>
-                                </li>
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
+                          You can change the 3 to any number you want e.g
+                          To display only 5 pagination items, change the 3 to 2 (2 before and 2 after the current page)
+                      {% endcomment %}
+                      {% if page_number <= page_obj.number|add:3 and page_number >= page_obj.number|add:-3 %}
+                          {% if page_obj.number == page_number %}
+                              <li class="page-item active">
+                                  <a class="page-link" style="background-color: rgb(57, 57, 255);" href="?page={{ page_number }}">
+                                      {{ page_number }}
+                                  </a>
+                              </li>
+                          {% else %}
+                              <li class="page-item">
+                                  <a class="page-link" style="color: rgb(57, 57, 255);" href="?page={{ page_number }}">
+                                      {{ page_number }}
+                                  </a>
+                              </li>
+                          {% endif %}
+                      {% endif %}
+                  {% endfor %}
 
-                    {% if page_obj.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
-                                Next
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
-                                Last
-                            </a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </nav>
-        {% endif %}
-    </div>
+                  {% if page_obj.has_next %}
+                      <li class="page-item">
+                          <a class="page-link" style="color: rgb(57, 57, 255);" href="?page={{ page_obj.next_page_number }}">
+                              Next
+                          </a>
+                      </li>
+                      <li class="page-item">
+                          <a class="page-link" style="color: rgb(57, 57, 255);" href="?page={{ page_obj.paginator.num_pages }}">
+                              Last
+                          </a>
+                      </li>
+                  {% endif %}
+              </ul>
+          </nav>
+      {% endif %}
+  </div>
 </div>
 {% endblock %}

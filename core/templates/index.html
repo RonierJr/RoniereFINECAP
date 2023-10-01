@@ -1,3 +1,26 @@
 {%  extends 'base.html' %}
 {% block main %}
+<h2 style= "font-weight: bold;">FINECAP 2023</h2>
+
+<div style="display: flex; justify-content: center">
+  <div style="width: 30%; margin: 20px;">
+    <div class="card mb-3" style="color: white; background-color: rgb(57, 57, 255);">
+      <div class="card-header">Reservas</div>
+      <div class="card-body">
+        <h5 class="card-title">Total de Reservas</h5>
+        <p class="card-text">{{ total_reserva }}</p>
+      </div>
+    </div>
+  </div>
+
+    <div style="width: 30%; margin: 20px;">
+      <div class="card mb-3" style="color: white; background-color: rgb(57, 57, 255);">
+        <div class="card-header">Stands</div>
+        <div class="card-body">
+          <h5 class="card-title">Total de Stands</h5>
+          <p class="card-text">{{ total_stands }}</p>
+        </div>
+      </div>
+    </div>
+</div>
 {% endblock %}

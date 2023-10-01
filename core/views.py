@@ -11,7 +11,11 @@ from django.contrib.messages import views
 class IndexHomeView(generic.TemplateView):
     template_name = "index.html"
 
-    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["total_reserva"] = Reserva.objects.count()
+        context["total_stands"] = Stand.objects.count()
+        return context
     
 class ReservaCreateView(generic.CreateView):
     model = Reserva
@@ -70,7 +74,7 @@ class StandUpdateView(generic.UpdateView):
     model = Stand
     form_class = StandForm
     success_url = reverse_lazy("lista_stands")
-    template_name = "reserva_stand.html"
+    template_name = "form_stand.html"
 
     def form_valid(self, form):
         messages.success(self.request, "Seu stand foi atualizado com sucesso")

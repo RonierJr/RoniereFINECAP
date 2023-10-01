@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/contato.css">
     <title>RESERVAS FINECAP 2023</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,19 +21,23 @@
 
 <body>
     <header
-        style="display: flex; justify-content: space-around; background-color: rgb(87, 87, 231); height: 90px; text-align: center; width: 100%; box-shadow: 10px; ">
-        <a href="{% url 'index' %}" style="text-decoration: none; padding-top: 20px; color: white; font-weight: 700;
+        style="display: flex; justify-content: space-around; background-color: rgb(57, 57, 255); height: 90px; align-items: center; text-align: center; width: 96%; box-shadow: 10px; border-radius: 10px; margin: auto; margin-top: 10px;">
+        <div>
+            <a href="{% url 'index' %}" style="text-decoration: none; padding-top: 0px; color: white; font-weight: 700;
     font-family: 'Teko', sans-serif; ">
-            <h1>FINECAP</h1>
-        </a>
-        <nav style="margin-top: 30px;">
+                <h1 style="margin: 0; padding-top: 5px;">FINECAP</h1>
+            </a>
+        </div>
+        <nav>
             <a href="{% url 'lista_reservas' %}"
-                style="margin: 10px; text-decoration: none; color: white; font-size: 20px;">Reservas</a>
+                style="margin-right: 10px; text-decoration: none; color: white; font-size: 20px;">Reservas</a>
             <a href="{% url 'lista_stands' %}"
-                style="margin: 10px; text-decoration: none; color: white; font-size: 20px;">Stands</a>
+                style="margin-left: 10px; text-decoration: none; color: white; font-size: 20px;">Stands</a>
         </nav>
     </header>
-    <main style="width: 70%; text-align: center; margin: auto;">
+    <main style="width: 70%; text-align: center; margin: auto; height: auto ;">
+        <br>
+        <br>
         {% block main %}
         {% endblock %}
     </main>
