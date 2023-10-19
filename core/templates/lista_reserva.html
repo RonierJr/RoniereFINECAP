@@ -53,7 +53,7 @@
           <a href="{% url 'reserva_detalhe' object.id %}" ><span class="material-icons detalhar">
             find_in_page
             </span></a>
-          <a title="excluir" type="button" data-toggle="modal" data-target="#myModal" ><span class="material-icons remover">
+          <a title="excluir" type="button" data-toggle="modal" data-target="#myModal-{{ object.pk }}" ><span class="material-icons remover">
             delete
             </span></a>
             {% include "core/reserva_confirm_delete.html" %}

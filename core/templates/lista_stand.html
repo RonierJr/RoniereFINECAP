@@ -61,9 +61,10 @@
                 <a href="{% url 'stand_detalhe' object.id %}" class="btn btn-sm"><span class="material-icons detalhar">
                         find_in_page
                     </span></a>
-                <a href="{% url 'remover_stand' object.id %}" class="btn btn-sm"><span class="material-icons remover">
+                <a title="excluir" type="button" data-toggle="modal" data-target="#myModal-{{ object.pk }}" ><span class="material-icons remover">
                         delete
                     </span></a>
+                    {% include "core/stand_confirm_delete.html" %}
             </td>
         </tr>
         {% endfor %}

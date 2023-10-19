@@ -55,7 +55,6 @@ class ReservaDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_message = "Reserva excluído com sucesso!"
 
 
-
 class ReservaUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Reserva
     form_class = ReservaForm

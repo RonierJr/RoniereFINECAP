@@ -1,6 +1,6 @@
-<form action="{% url 'remover_reserva' object.pk %}" method="post">
+<form action="{% url 'remover_reserva' object.id %}" method="post">
   {% csrf_token %}
-  <div class="modal" id="myModal">
+  <div class="modal" id="myModal-{{ object.pk }}" tabindex="1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
