@@ -7,6 +7,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.messages import views
+from users.permissions import GerentePermission
 # Create your views here.
 
 
@@ -49,13 +50,13 @@ class ReservasListView(LoginRequiredMixin, generic.ListView):
     template_name = "lista_reserva.html"
     paginate_by = 3
 
-class ReservaDeleteView(LoginRequiredMixin, generic.DeleteView):
+class ReservaDeleteView(GerentePermission, LoginRequiredMixin, generic.DeleteView):
     model = Reserva
     success_url = reverse_lazy("lista_reservas")
     success_message = "Reserva excluído com sucesso!"
 
 
-class ReservaUpdateView(LoginRequiredMixin, generic.UpdateView):
+class ReservaUpdateView(GerentePermission, LoginRequiredMixin, generic.UpdateView):
     model = Reserva
     form_class = ReservaForm
     success_url = reverse_lazy("lista_reservas")
@@ -70,7 +71,7 @@ class ReservaDetailView(LoginRequiredMixin, generic.DetailView):
     model = Reserva
     template_name = "detalhe_reserva.html"  
 
-class StandCreateView(LoginRequiredMixin, generic.CreateView):
+class StandCreateView(GerentePermission, LoginRequiredMixin, generic.CreateView):
         model = Stand
         form_class = StandForm
         success_url = reverse_lazy("lista_stands")
@@ -85,7 +86,7 @@ class StandListView(LoginRequiredMixin, generic.ListView):
     template_name = "lista_stand.html"
     paginate_by = 3
 
-class StandUpdateView(LoginRequiredMixin, generic.UpdateView):
+class StandUpdateView(GerentePermission, LoginRequiredMixin, generic.UpdateView):
     model = Stand
     form_class = StandForm
     success_url = reverse_lazy("lista_stands")
@@ -95,7 +96,7 @@ class StandUpdateView(LoginRequiredMixin, generic.UpdateView):
         messages.success(self.request, "Seu stand foi atualizado com sucesso")
         return super().form_valid(form)
 
-class StandDeleteView(LoginRequiredMixin, generic.DeleteView):
+class StandDeleteView(GerentePermission, LoginRequiredMixin, generic.DeleteView):
     model = Stand
     success_url = reverse_lazy("lista_stands")
     success_message = "Stand excluído com sucesso!"

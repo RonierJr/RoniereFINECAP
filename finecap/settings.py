@@ -15,6 +15,9 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 
 # Quick-start development settings - unsuitable for production
@@ -85,7 +88,10 @@ AUTHENTICATION_BACKENDS = [
 
 WSGI_APPLICATION = 'finecap.wsgi.application'
 AUTH_USER_MODEL = "users.User"
-LOGIN_REDIRECT_URL = "core:home"
+LOGIN_REDIRECT_URL = "index"
+ACCOUNT_ALLOW_REGISTRATION = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -132,7 +138,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/' 
+STATIC_URL = "/static/"
 
 
 # Default primary key field type
